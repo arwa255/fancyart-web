@@ -16,6 +16,7 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class TypeRepository extends ServiceEntityRepository
 {
+    // abcdefg
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Type::class);
