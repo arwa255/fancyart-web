@@ -1,0 +1,14 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}New Categorie{% endblock %}
+
+{% block body %}
+
+    {{ form_start(form)}}
+
+    {{ form_widget(form.type, { 'attr': {'class':'form-control','placeholder': 'Type Categorie'}}) }}
+    {{ form_errors(form.type) }}
+        <button type="submit" class="btn btn-primary" style="text-align: center !important;"formnovalidate>Send</button>
+    {{ form_end(form)}}
+
+{% endblock %}

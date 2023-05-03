@@ -1,0 +1,30 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}New Produit{% endblock %}
+
+{% block body %}
+
+    <div class="col-xl-8 col-lg-7">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div
+                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                {{ form_start(form)}}
+
+                {{ form_widget(form.nom, { 'attr': {'class':'form-control','placeholder': 'Nom'}}) }}
+                {{ form_errors(form.nom) }}<br>
+                {{ form_widget(form.prix, { 'attr': {'class':'form-control','placeholder': 'Prix'}}) }}
+                {{ form_errors(form.prix) }}<br>
+                {{ form_widget(form.description, { 'attr': {'class':'form-control','placeholder': 'Description'}}) }}
+                {{ form_errors(form.description) }}<br>
+                {{ form_widget(form.file, { 'attr': {'class':'form-control','placeholder': 'Type Categorie'}}) }}
+                {{ form_errors(form.file) }}<br>
+                {{ form_widget(form.idCategorie, { 'attr': {'class':'form-control','placeholder': 'Type Categorie'}}) }}
+                {{ form_errors(form.idCategorie) }}<br><br>
+
+
+                <button type="submit" class="btn btn-primary" style="text-align: center !important;">Send</button>
+            </div>
+        </div></div>
+    {{ form_end(form)}}
+{% endblock %}
