@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Evenement{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="mb-4">Edit Evenement</h1>
+
+        <div class="row">
+            <div class="col-md-8">
+                {{ form_start(form) }}
+                {{ form_row(form.nomevent, {'attr': {'class': 'form-control mb-3'}}) }}
+                {{ form_row(form.descriptionevent, {'attr': {'class': 'form-control mb-3'}}) }}
+                {{ form_row(form.datedebutevent, {'attr': {'class': 'form-control mb-3'}}) }}
+                {{ form_row(form.datefinevent, {'attr': {'class': 'form-control mb-3'}}) }}
+                {{ form_row(form.adresseevent, {'attr': {'class': 'form-control mb-3'}}) }}
+                {{ form_row(form.capaciteevent, {'attr': {'class': 'form-control mb-3'}}) }}
+                {{ form_row(form.prixentre, {'attr': {'class': 'form-control mb-3'}}) }}
+                {{ form_row(form.image1, {'attr': {'class': 'form-control mb-3'}}) }}
+                <button type="submit" class="btn btn-primary">submit </button>
+                {{ form_end(form) }}
+            </div>
+            <div class="col-md-4">
+                {{ include('evenement/_delete_form.html.twig') }}
+            </div>
+        </div>
+
+        <div class="mt-5">
+            <a href="{{ path('app_evenement_index') }}" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+{% endblock %}

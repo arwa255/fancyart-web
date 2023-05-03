@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Events {% endblock %}
+
+{% block body %}
+<h1></h1>
+<style>
+       .card {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.card:hover {
+    box-shadow: 0px 0px 10px #888;
+}
+
+    </style>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for evenement in evenements %}
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                <img src="{{asset('uploads/images/' ~ evenement.image1)}}"  class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ evenement.nomevent }}</h5>
+                    <p class="card-text">{{ evenement.descriptionevent }}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Adresse: {{ evenement.adresseevent }}</li>
+                    <li class="list-group-item">Capacité: {{ evenement.capaciteevent }}</li>
+                    <li class="list-group-item">Prix d'entrée: {{ evenement.prixentre }}</li>
+                </ul>
+                <div class="card-footer">
+                    <small class="text-muted">Disponible: {{ evenement.nbrticketdispo }} billets</small>
+                    <a href="{{ path('app_evenement_show', {'idevent': evenement.idevent}) }}" class="btn btn-primary float-end">Voir plus</a>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <p class="card-text">Aucun événement trouvé.</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<a href="{{ path('app_evenement_new') }}" class="btn btn-success mt-3">Créer un nouvel événement</a>
+{% endblock %}

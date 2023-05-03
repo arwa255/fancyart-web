@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ticket index{% endblock %}
+
+{% block body %}
+    <h1>Ticket index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Idticket</th>
+                <th>Prixticket</th>
+                <th>Nomevent</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ticket in tickets %}
+            <tr>
+                <td>{{ ticket.idticket }}</td>
+                <td>{{ ticket.prixticket }}</td>
+                <td>{{ ticket.nomevent }}</td>
+                <td>
+                    <a href="{{ path('app_ticket_show', {'idticket': ticket.idticket}) }}">show</a>
+                    <a href="{{ path('app_ticket_edit', {'idticket': ticket.idticket}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_ticket_new') }}">Create new</a>
+{% endblock %}
