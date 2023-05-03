@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Evenement{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title">{{ evenement.nomevent }}</h1>
+                        <p class="card-text">{{ evenement.descriptionevent }}</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Adresse:</strong> {{ evenement.adresseevent }}</li>
+                        <li class="list-group-item"><strong>Capacité:</strong> {{ evenement.capaciteevent }}</li>
+                        <li class="list-group-item"><strong>Date de début:</strong> {{ evenement.datedebutevent }}</li>
+                        <li class="list-group-item"><strong>Date de fin:</strong> {{ evenement.datefinevent }}</li>
+                        <li class="list-group-item"><strong>Prix d'entrée:</strong> {{ evenement.prixentre }} €</li>
+                        <li class="list-group-item"><strong>Nombre de tickets disponibles:</strong> {{ evenement.nbrticketdispo }}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img class="card-img-top" src="{{ asset('uploads/images/' ~ evenement.image1) }}" alt="{{ evenement.nomevent }}">
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <a href="{{ path('app_evenement_index') }}" class="btn btn-primary">Retour à la liste</a>
+                <a href="{{ path('app_evenement_edit', {'idevent': evenement.idevent}) }}" class="btn btn-secondary">Modifier l'événement</a>
+                {{ include('evenement/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

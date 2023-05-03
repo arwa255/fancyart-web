@@ -2,98 +2,85 @@
 
 namespace App\Entity;
 
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use App\Repository\UtilisateurRepository;
 
-
-
-
-#[ORM\MappedSuperclass]
-#[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
-
+/**
+ * Utilisateur
+ *
+ * @ORM\Table(name="utilisateur")
+ * @ORM\Entity
+ */
 class Utilisateur
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null ;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=50, nullable=false)
+     */
+    private $nom;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="prenom", type="string", length=50, nullable=false)
+     */
+    private $prenom;
 
-    #[ORM\Column(length:50)]
-    private ?string $name = null ;
-   
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="adresse", type="string", length=50, nullable=false)
+     */
+    private $adresse;
 
-    #[ORM\Column(length:50)]
-    private ?string $lastname = null ;
-   
-    #[ORM\Column(length:50)]
-    private ?string $email = null ;
-   
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Mot_de_passe", type="string", length=50, nullable=false)
+     */
+    private $motDePasse;
 
-
-    #[ORM\Column(length:50)]
-    private ?string $adresse = null ;
-
-
-    #[ORM\Column(length:50)]
-    private ?string $type = null ;
-    
-
-    #[ORM\Column(type: "date")]
-    private $birthdate;
-
-
-    #[ORM\Column(length:50)]
-    private ?string $password = null ;
-  
-
-    #[ORM\Column(length:50)]
-    private ?int $nbPoint = null ;
- 
-
-    #[ORM\Column(length:50)]
-    private ?int $code = null ;
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="adresse_mail", type="string", length=50, nullable=false)
+     */
+    private $adresseMail;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getNom(): ?string
     {
-        return $this->name;
+        return $this->nom;
     }
 
-    public function setName(string $name): self
+    public function setNom(string $nom): self
     {
-        $this->name = $name;
+        $this->nom = $nom;
 
         return $this;
     }
 
-    public function getLastname(): ?string
+    public function getPrenom(): ?string
     {
-        return $this->lastname;
+        return $this->prenom;
     }
 
-    public function setLastname(string $lastname): self
+    public function setPrenom(string $prenom): self
     {
-        $this->lastname = $lastname;
-
-        return $this;
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
+        $this->prenom = $prenom;
 
         return $this;
     }
@@ -110,64 +97,29 @@ class Utilisateur
         return $this;
     }
 
-    public function getType(): ?string
+    public function getMotDePasse(): ?string
     {
-        return $this->type;
+        return $this->motDePasse;
     }
 
-    public function setType(string $type): self
+    public function setMotDePasse(string $motDePasse): self
     {
-        $this->type = $type;
+        $this->motDePasse = $motDePasse;
 
         return $this;
     }
 
-    public function getBirthdate(): ?\DateTimeInterface
+    public function getAdresseMail(): ?string
     {
-        return $this->birthdate;
+        return $this->adresseMail;
     }
 
-    public function setBirthdate(\DateTimeInterface $birthdate): self
+    public function setAdresseMail(string $adresseMail): self
     {
-        $this->birthdate = $birthdate;
+        $this->adresseMail = $adresseMail;
 
         return $this;
     }
 
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    public function getNbPoint(): ?int
-    {
-        return $this->nbPoint;
-    }
-
-    public function setNbPoint(int $nbPoint): self
-    {
-        $this->nbPoint = $nbPoint;
-
-        return $this;
-    }
-
-    public function getCode(): ?int
-    {
-        return $this->code;
-    }
-
-    public function setCode(?int $code): self
-    {
-        $this->code = $code;
-
-        return $this;
-    }
 
 }

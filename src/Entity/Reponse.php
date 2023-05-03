@@ -2,94 +2,87 @@
 
 namespace App\Entity;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use App\Repository\ReponseRepository;
-use App\Entity\Utilisateur;
-use Symfony\Component\Validator\Constraints as Assert;
-use App\Entity\Reclamation;
-use ORM\Table;
 
-
-
-#[ORM\Entity(repositoryClass: ReponseRepository::class)]
-
-
+/**
+ * Reponse
+ *
+ * @ORM\Table(name="reponse", indexes={@ORM\Index(name="id_reclamation", columns={"id_reclamation"})})
+ * @ORM\Entity
+ */
 class Reponse
 {
-   
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id_reponse = null;
-    
-  
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id_reponse", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idReponse;
 
-    #[ORM\Column(length: 250)]
-    #[Assert\NotBlank(message: "Tu dois saisir le texte du reponse  ")]
-    private ?string $text_rep = null;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id_reclamation", type="integer", nullable=false)
+     */
+    private $idReclamation;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="message_rep", type="integer", nullable=false)
+     */
+    private $messageRep;
 
-    
-    #[ORM\OneToOne(targetEntity: Reclamation::class, inversedBy: 'reponse')]
-    #[ORM\JoinColumn(name: "id_reclamation", referencedColumnName: "id_reclamation")]
-    protected $reclamation;
-
-
-    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_rep", type="date", nullable=false)
+     */
+    private $dateRep;
 
     public function getIdReponse(): ?int
     {
-        return $this->id_reponse;
+        return $this->idReponse;
     }
 
-    public function getId_Reponse(): ?int
+    public function getIdReclamation(): ?int
     {
-        return $this->id_reponse;
+        return $this->idReclamation;
     }
 
-
-
-
-    public function getText_Rep(): ?string
+    public function setIdReclamation(int $idReclamation): self
     {
-        return $this->text_rep;
-    }
-    public function getTextRep(): ?string
-    {
-        return $this->text_rep;
-    }
-
-
-    public function setTextRep(string $text_rep): self
-    {
-        $this->text_rep = $text_rep;
-
-        return $this;
-    }
-    public function setText_Rep(string $text_rep): self
-    {
-        $this->text_rep = $text_rep;
+        $this->idReclamation = $idReclamation;
 
         return $this;
     }
 
-
-
-
-
-    public function getReclamation(): ?Reclamation
+    public function getMessageRep(): ?int
     {
-        return $this->reclamation;
+        return $this->messageRep;
     }
 
-    public function setReclamation(?Reclamation $reclamation): self
+    public function setMessageRep(int $messageRep): self
     {
-        $this->reclamation = $reclamation;
+        $this->messageRep = $messageRep;
+
+        return $this;
+    }
+
+    public function getDateRep(): ?\DateTimeInterface
+    {
+        return $this->dateRep;
+    }
+
+    public function setDateRep(\DateTimeInterface $dateRep): self
+    {
+        $this->dateRep = $dateRep;
 
         return $this;
     }
 
 
-
-
-     }
+}
